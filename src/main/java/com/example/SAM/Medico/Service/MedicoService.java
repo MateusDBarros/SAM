@@ -31,7 +31,13 @@ public class MedicoService {
 
     public Medico findById(int id) {
         if (!repository.existe(id))
-            throw new IllegalStateException("ID não identificado");
+            throw new IllegalStateException("ID não identificado.");
         return repository.findById(id);
+    }
+
+    public void updateMedico(Medico medico) {
+        if (!repository.existe(medico.getMedicoId()))
+            throw new IllegalStateException("ID não identificado.");
+        repository.updateMedico(medico);
     }
 }
