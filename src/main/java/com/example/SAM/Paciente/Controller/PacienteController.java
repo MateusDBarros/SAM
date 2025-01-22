@@ -38,7 +38,7 @@ public class PacienteController {
 
 
 
-    @PutMapping("{pacienteId}")
+    @PutMapping("/{pacienteId}")
     public ResponseEntity<String> updatePaciente(@RequestBody Paciente paciente, @PathVariable int id) {
         paciente.setPacienteId(id);
         services.updatePaciente(paciente);
