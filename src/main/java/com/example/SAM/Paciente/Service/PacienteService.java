@@ -32,9 +32,9 @@ public class PacienteService {
 
 
     public Paciente findPaciente(int id) {
-        if (repository.existe(id))
-            return repository.findById(id);
-        throw new IllegalStateException("Paciente nao encontrado, verifique o ID");
+        if (!repository.existe(id))
+            throw new IllegalStateException("Paciente nao encontrado, verifique o ID");
+        return repository.findById(id);
     }
 
     public void updatePaciente(Paciente paciente) {

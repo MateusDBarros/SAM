@@ -2,7 +2,6 @@ package com.example.SAM.Medico.Repository;
 
 import com.example.SAM.Medico.Model.Especialidades;
 import com.example.SAM.Medico.Model.Medico;
-import com.example.SAM.Paciente.Model.Paciente;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -46,5 +45,14 @@ public class MedicoRepository {
         );
     }
 
-    public void updateMedico()
+    public void updateMedico(Medico medico) {
+        String sql = "UPDATE Medicos SET name = ?, especialidade = ?, crm = ? WHERE medicoId = ?";
+        jdbc.update(sql, medico.getName(), medico.getEspecialidade(), medico.getCrm());
+    }
+
+    public boolean existe(int id) {
+        String sql = "SELECT COUNT(*) FROM Medicos WHERE medicosId = ?";
+        Integer count = jdbc.queryForObject(sql, Integer.class, id);
+        return count != null && count > 0;
+    }
 }
